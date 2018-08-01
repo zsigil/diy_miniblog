@@ -6,3 +6,7 @@ class HomeViewTest(TestCase):
         resp = self.client.get('/blog/')
         self.assertEqual(resp.status_code,200)
         self.assertTemplateUsed(resp, 'blog/index.html')
+
+    #test redirection of main page
+
+    #test index page has link to blog page

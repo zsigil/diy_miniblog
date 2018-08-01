@@ -1,0 +1,48 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+
+{% if form.errors or next %}
+<div class="jumbotron text-center">
+  {% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+      {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+      {% endif %}
+  {% endif %}
+
+</div>
+{% endif %}
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 m-auto">
+      <div class="card text-center">
+        <h5 class="card-header">Login</h5>
+
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+
+          {{form.as_p}}
+
+            <input class="btn btn-outline-secondary btn-lg" type="submit" value="login" />
+            <input type="hidden" name="next" value="{{ next }}" />
+
+          </form>
+        </div>
+
+        <div class="card-footer text-muted">
+          <p><a href="#">Lost password?</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
