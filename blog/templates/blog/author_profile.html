@@ -1,0 +1,30 @@
+{% extends 'blog/base.html'%}
+
+{% block content %}
+
+<h1 class="display-4 text-center">{{author.user.username}}</h1>
+<div class="jumbotron">
+  <p>{{author.bio}}</p>
+
+</div>
+
+
+<h1>Blogs by {{author.user.username}}</h1>
+
+{% for blog in author.user.blogs.all %}
+
+    <div class="card my-3">
+      <div class="card-header">
+        {{blog.title}}
+      </div>
+      <div class="card-body">
+        <p class="card-text">{{blog.text|truncatechars:200}}</p>
+        <a href="{% url 'blog_detail' blog.id %}" class="btn btn-primary">See details</a>
+      </div>
+    </div>
+
+
+  {%empty%}
+  <p>No blogs yet.</p>
+{%endfor%}
+{% endblock %}

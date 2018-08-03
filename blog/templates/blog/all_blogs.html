@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="row my-3">
+
+  {% for blog in blog_list %}
+  <div class="col-md-4">
+    <div class="card">
+      <h5 class="card-header">{{blog.title}}</h5>
+      <div class="card-body">
+        <h5 class="card-title">{{blog.pub_date}},  by <a href="{% url 'blogger_detail' blog.blogger.author.id%}">{{blog.blogger.username}}</a></h5>
+        <p class="card-text">{{blog.text|truncatechars:60}}</p>
+        <a href="{% url 'blog_detail' blog.pk %}" class="btn btn-primary">See whole blog</a>
+      </div>
+    </div>
+  </div>
+
+  {% empty %}
+
+  <h1>Sorry, no blogs to show.</h1>
+  {% endfor %}
+</div>
+
+{%endblock%}

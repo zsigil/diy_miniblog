@@ -1,0 +1,29 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h1>{{blog.title}}</h1>
+<h5>Posted on {{blog.pub_date}} by {{blog.blogger}}</h5>
+<p>{{blog.text}}</p>
+
+<a class="btn btn-light" href="{% url 'create_comment' blog.id %}">Comment</a>
+
+{% if blog.comments.all %}
+  <hr>
+  <h5 class="py-3">Comments</h5>
+  {% for comment in blog.comments.all %}
+    <div class="row my-3">
+      <div class="col-md-10">
+        <h6>By {{comment.commenter}} on {{comment.pub_date}}</h6>
+        <p class="lead">{{comment.text}}</p>
+      </div>
+    </div>
+
+  {% endfor %}
+
+{% else %}
+<p>No comments yet.</p>
+
+{%endif%}
+
+{% endblock %}

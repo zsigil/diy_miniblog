@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+<div class="container mt-5 signupcontainer">
+  <div class="row">
+    <div class="col-md-8 m-auto">
+      <div class="card text-center">
+        <h5 class="card-header">Sign up for free</h5>
+
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+
+
+
+            {% for field in form %}
+
+                <p>
+                  <div class="form-group">
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                  </div>
+
+                  {% if field.help_text %}
+                      <p class="form-text text-muted"> {{ field.help_text|safe }}</p>
+                  {% endif %}
+
+                  {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+
+                </p>
+
+            {% endfor %}
+
+            <input class="btn btn-outline-secondary btn-lg" type="submit" value="Sign Up" />
+
+          </form>
+          <div class="pt-3">
+            <a class="btn btn-light" href="{% url 'login' %}">Already registered? Log in!</a>
+          </div>
+
+        </div>
+
+        <div class="card-footer text-muted">
+          <p><a href="#">Lost password?</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

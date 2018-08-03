@@ -1,0 +1,48 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 m-auto">
+      <div class="card text-center">
+        <h5 class="card-header">Become An Author</h5>
+
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+
+
+            {% for field in form %}
+                <p>
+                  {{ field.label_tag }}<br>
+                  {{ field }}
+                  {% if field.help_text %}
+                      <p>  <small style="color: grey">{{ field.help_text }}</small></p>
+
+                  {% endif %}
+                  {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </p>
+            {% endfor %}
+
+            <input class="btn btn-outline-secondary btn-lg" type="submit" value="Want to be an author" />
+            </div>
+          </form>
+          <div class="pt-3">
+            <a class="btn btn-light" href="{% url 'home' %}">Changed your mind?</a>
+          </div>
+
+        </div>
+        <div class="card-footer text-muted">
+          <p>Note that your permission to create a blog on the page may be revoked by the admin.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

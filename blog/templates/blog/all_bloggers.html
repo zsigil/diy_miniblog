@@ -1,0 +1,23 @@
+{%extends 'blog/base.html'%}
+
+{% block content %}
+<h1 class="display-4 text-center py-3">Our Bloggers</h1>
+<div class="row">
+  <div class="col-md-8 m-auto">
+    <ul class="list-group my-5">
+      {% for author in object_list %}
+      <li class="list-group-item my-1">
+        <a href="{% url 'blogger_detail' author.id %}">{{author.user.username}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+
+
+    {% if user.is_authenticated and not perms.blog.can_write_blog %}
+    <a class="btn btn-light" href="{% url 'create_author' %}">Be a blogger!</a>
+    {%endif%}
+  </div>
+</div>
+
+
+{% endblock %}
