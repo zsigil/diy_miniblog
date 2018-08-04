@@ -1,0 +1,10 @@
+{% extends 'blog/base.html'%}
+
+{% block content %}
+<div class="jumbotron">
+  <h1>Uhhhhh ohhhh</h1>
+  <h3>You have no access to the page you requested, so you have been redirected here.</h3>
+  <p>Please login with an account with correct permissions.</p>
+  <a class="btn btn-success" href="{%url 'login'%}">Login</a>
+</div>
+{% endblock %}

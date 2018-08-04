@@ -1,0 +1,22 @@
+{% extends 'blog/base.html'%}
+
+{% block content%}
+
+
+
+<div class="row">
+  <div class="col-md-8 m-auto">
+    <h3>{{blog.title}}</h1>
+      <p>{{comment.text}}</p>
+    <p>Update your comment:</p>
+
+    <form class="form-group" method="post">
+      {% csrf_token %}
+      {{form.text}}
+
+      <input class="btn btn-info" type="submit" value="submit">
+    </form>
+  </div>
+</div>
+
+{% endblock %}
